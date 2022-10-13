@@ -23,7 +23,7 @@ public class Main {
         List<String> datas = new ArrayList<>();
         datas.add("INSERT INTO `likeLion-db`.`seoul_hospital` (`id`,`address`,`district`,`category`,`emergency_room`,`name`,`subdivision`) VALUES\n");
         for (Hospital h : hospitalLists) {
-            String s = String.format(" (%s,%s,%s,%s,%d,%s,%s),\n",
+            String s = String.format(" (\"%s\",\"%s\",\"%s\",\"%s\",\"%d\",\"%s\",\"%s\"),\n",
                     h.getId(),h.getAddress(),h.getDistrict(), h.getCategory(), h.getEmergencyRoom(), h.getName(), h.getSubdivision());
             datas.add(s);
         }
