@@ -9,6 +9,7 @@ public class Hospital {
     private String name;
     private String subdivision;
 
+
     public Hospital(String id, String address, String district, String category, Integer emergencyRoom, String name, String subdivision) {
         this.id = id;
         this.address = address;
