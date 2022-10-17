@@ -9,13 +9,13 @@ public class HospitalDAO {
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
-    public void connect() throws SQLException {
+
+    public HospitalDAO() throws SQLException {
         Map<String, String> env = System.getenv();
         String dbHost = env.get("DB_HOST");
         String dbUser = env.get("DB_USER");
         String dbPassword = env.get("DB_PASSWORD");
-
-        conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
+        this.conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
     }
 
     public void fconnect() throws SQLException {
@@ -36,17 +36,20 @@ public class HospitalDAO {
         ps.executeUpdate();
     }
 
-//    public void find(int id) throws SQLException {
-//        ps = conn.prepareStatement("select * from seoul_hospital where id=?");
-//        ps.setInt(1,id);
-//
-//        rs = ps.executeQuery();
-//
-//        while (rs.next()){
-//            System.out.println("id: "+rs.getString(1));
-//            System.out.println("name: "+rs.getString(2));
-//            System.out.println("password: "+rs.getString(3));
-//        }
-//    }
+    public void findAll() throws SQLException {
+        ps = conn.prepareStatement("select * from seoul_hospital");
+        rs = ps.executeQuery();
+
+        while (rs.next()){
+            System.out.println(rs.getString(1) + "\t"+
+                    rs.getString(2) + "\t"+
+                    rs.getString(3) + "\t"+
+                    rs.getString(4) + "\t"+
+                    rs.getString(5) + "\t"+
+                    rs.getString(6) + "\t"+
+                    rs.getString(7) + "\t"
+            );
+        }
+    }
 
 }

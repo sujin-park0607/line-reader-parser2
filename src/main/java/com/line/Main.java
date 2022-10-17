@@ -16,12 +16,19 @@ public class Main {
      * sql 쿼리 만드는 메소드드
      * */
     public void getSqlInsertQuery(List<Hospital> hospitalLists) throws SQLException {
-        HospitalDAO dao = new HospitalDAO();
-        dao.connect();
 
+        HospitalDAO dao = new HospitalDAO();
         for (Hospital h : hospitalLists) {
+//            insert 쿼리
             dao.add(h.getId(),h.getAddress(),h.getDistrict(), h.getCategory(), h.getEmergencyRoom(), h.getName(), h.getSubdivision());
         }
+//        connect 끝
+        dao.fconnect();
+    }
+
+    public void getSqlSelectQuery() throws SQLException {
+        HospitalDAO dao = new HospitalDAO();
+        dao.findAll();
         dao.fconnect();
     }
 
@@ -35,8 +42,14 @@ public class Main {
         List<Hospital> hospitalLists = hospitalLineReader.readLines(inputFileName);
 
         //sql쿼리 작성
-        Main main = new Main();
-        main.getSqlInsertQuery(hospitalLists);
+        HospitalDAO dao = new HospitalDAO();
+//        데이터 삽입
+//        for (Hospital h : hospitalLists) {
+//            dao.add(h.getId(),h.getAddress(),h.getDistrict(), h.getCategory(), h.getEmergencyRoom(), h.getName(), h.getSubdivision());
+//        }
+//        데이터 조회
+        dao.findAll();
+        dao.fconnect();
 
         //파일 저장
 //        FileWrite fw = new FileWrite(datas, outputFileNmae);
