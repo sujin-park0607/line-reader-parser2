@@ -1,6 +1,8 @@
 package com.line.parser;
 
+import com.line.Main;
 import com.line.domain.Hospital;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,6 +22,7 @@ class HospitalParserTest {
         String category ="C";
         Integer emergencyRoom = 2;
         String name = "가산기대찬의원";
+        String subdivision = "";
 
         //when
         HospitalParser hp = new HospitalParser();
@@ -32,5 +35,12 @@ class HospitalParserTest {
         assertEquals(category, hospital.getCategory());
         assertEquals(emergencyRoom, hospital.getEmergencyRoom());
         assertEquals(name, hospital.getName());
+        assertEquals(subdivision, hospital.getSubdivision());
+    }
+
+    @Test
+    @DisplayName("insert쿼리를 잘 만드는지 test")
+    void makeSqlQueryTest() {
+
     }
 }
