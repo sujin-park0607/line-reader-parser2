@@ -1,8 +1,11 @@
 package com.line.dao;
 
 import com.line.database.SQLtest;
+import com.line.domain.Hospital;
 
 import java.sql.*;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class HospitalDAO {
@@ -22,16 +25,18 @@ public class HospitalDAO {
         ps.close();
         conn.close();
     }
-    public void add(String id, String address, String district, String category, int emergency_room, String name, String subdivision) throws SQLException {
+    public void add(List<Hospital> hospital) throws SQLException {
 
-        ps = conn.prepareStatement("INSERT INTO seoul_hospital(id, address, district, category, emergency_room, name, subdivision) VALUES (?,?,?,?,?,?,?)");
-        ps.setString(1,id);
-        ps.setString(2,address);
-        ps.setString(3,district);
-        ps.setString(4,category);
-        ps.setInt(5,emergency_room);
-        ps.setString(6,name);
-        ps.setString(7,subdivision);
+        for (Hospital h : hospital) {
+            ps = conn.prepareStatement("INSERT INTO seoul_hospital(id, address, district, category, emergency_room, name, subdivision) VALUES (?,?,?,?,?,?,?)");
+            ps.setString(1,h.getId());
+            ps.setString(2,h.getAddress());
+            ps.setString(3,h.getDistrict());
+            ps.setString(4,h.getCategory());
+            ps.setInt(5,h.getEmergencyRoom());
+            ps.setString(6,h.getName());
+            ps.setString(7,h.getSubdivision());
+        }
 
         ps.executeUpdate();
     }
