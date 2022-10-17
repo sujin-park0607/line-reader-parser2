@@ -15,16 +15,19 @@ public class SQLtest {
 
         conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
     }
+
+    public void fconnect() throws SQLException {
+        ps.close();
+        conn.close();
+    }
     public void add() throws SQLException {
 
         ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?,?,?)");
         ps.setString(1,"1");
         ps.setString(2,"Sujin");
         ps.setString(3,"1234");
-
         ps.executeUpdate();
-        ps.close();
-        conn.close();
+
     }
 
     public void select(int id) throws SQLException {
