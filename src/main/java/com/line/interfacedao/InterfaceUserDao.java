@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class InterfaceUserDao {
     private ConnectionMaker connectionMaker;
 
-    public InterfaceUserDao() {
-        connectionMaker = new AWSConnectionMaker();
+    public InterfaceUserDao(ConnectionMaker connectionMaker) {
+        this.connectionMaker = connectionMaker;
     }
 
     public void add(User user) throws SQLException, ClassNotFoundException {
