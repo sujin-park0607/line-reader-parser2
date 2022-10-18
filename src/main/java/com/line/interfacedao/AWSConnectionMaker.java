@@ -1,13 +1,15 @@
-package com.line.dao;
+package com.line.interfacedao;
+
+import com.line.interfacedao.ConnectionMaker;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
 
-//Connection Class
-public class SimpleConnectionMaker {
-    public Connection makeNewConnection() throws ClassNotFoundException, SQLException{
+public class AWSConnectionMaker implements ConnectionMaker {
+    @Override
+    public Connection makeConnection() throws SQLException, ClassNotFoundException {
         Map<String, String> env = System.getenv();
         String dbHost = env.get("DB_HOST");
         String dbUser = env.get("DB_USER");

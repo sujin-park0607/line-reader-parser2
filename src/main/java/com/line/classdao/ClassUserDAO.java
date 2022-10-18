@@ -1,15 +1,23 @@
-package com.line.dao;
+package com.line.classdao;
 
+import com.line.classdao.SimpleConnectionMaker;
 import com.line.domain.User;
 
-import java.sql.*;
-import java.util.Map;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-public abstract class AbstractUserDAO {
+public class ClassUserDAO {
+    private SimpleConnectionMaker simpleConnectionMaker;
+
+    public ClassUserDAO() {
+        simpleConnectionMaker = new SimpleConnectionMaker();
+    }
 
     //INSERT
     public void add(User user) throws SQLException, ClassNotFoundException {
-        Connection conn = getConnection();
+        Connection conn = simpleConnectionMaker.makeNewConnection();
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?,?,?)");
         ps.setString(1, user.getId());
         ps.setString(2,user.getName());
@@ -22,7 +30,7 @@ public abstract class AbstractUserDAO {
 
     //SELECT
     public User get(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = getConnection();
+        Connection conn = simpleConnectionMaker.makeNewConnection();
 
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
         ps.setString(1,id);
@@ -42,10 +50,4 @@ public abstract class AbstractUserDAO {
         return user;
     }
 
-    //CONNECTION 추상화
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
-
-    //CONNECTION 구현
 }
-
-

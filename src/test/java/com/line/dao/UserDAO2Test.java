@@ -1,23 +1,22 @@
 package com.line.dao;
 
 import com.line.domain.User;
+import com.line.interfacedao.InterfaceUserDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLException;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 class UserDAO2Test {
 
     @Test
     void addAndSelect(){
-        ClassUserDAO userDao = new ClassUserDAO();
-        User user = new User("13","SSJJIINN","06070607");
+        InterfaceUserDao userDao = new InterfaceUserDao();
+        User user = new User("14","SSJJIINN","06070607");
         try {
             userDao.add(user);
 
-            User selectedUser = userDao.get("13");
+            User selectedUser = userDao.get("14");
             System.out.println(selectedUser.getName());
             Assertions.assertEquals("SSJJIINN", selectedUser.getName());
         } catch (SQLException e) {
