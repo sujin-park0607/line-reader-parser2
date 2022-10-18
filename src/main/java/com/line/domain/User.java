@@ -1,4 +1,4 @@
-package com.line.dao;
+package com.line.domain;
 
 public class User {
     private String id;
