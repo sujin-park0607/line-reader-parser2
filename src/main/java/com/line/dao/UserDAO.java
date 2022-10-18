@@ -1,14 +1,14 @@
-package com.line.database;
+package com.line.dao;
 
 import java.sql.*;
 import java.util.Map;
 
-public class repeatSQL {
+public class UserDAO {
     private Connection conn;
     private PreparedStatement ps;
     private ResultSet rs;
 
-    public repeatSQL() throws SQLException {
+    public UserDAO() throws SQLException {
         Map<String, String> env = System.getenv();
         String dbHost = env.get("DB_HOST");
         String dbUser = env.get("DB_USER");
@@ -44,7 +44,7 @@ public class repeatSQL {
     }
 
     public static void main(String[] args) throws SQLException {
-        repeatSQL sql = new repeatSQL();
+        UserDAO sql = new UserDAO();
         sql.add("3","sky","123456768");
         sql.findOne(2);
         sql.fconnect();
