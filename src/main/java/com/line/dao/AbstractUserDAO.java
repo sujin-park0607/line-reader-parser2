@@ -6,10 +6,15 @@ import java.sql.*;
 import java.util.Map;
 
 public abstract class AbstractUserDAO {
+    private SimpleConnectionMaker simpleConnectionMaker;
+
+    public AbstractUserDAO() {
+        simpleConnectionMaker = new SimpleConnectionMaker();
+    }
 
     //INSERT
     public void add(User user) throws SQLException, ClassNotFoundException {
-        Connection conn = getConnection();
+        Connection conn = simpleConnectionMaker.makeNewConnection();
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?,?,?)");
         ps.setString(1, user.getId());
         ps.setString(2,user.getName());
@@ -22,7 +27,7 @@ public abstract class AbstractUserDAO {
 
     //SELECT
     public User get(String id) throws SQLException, ClassNotFoundException {
-        Connection conn = getConnection();
+        Connection conn = simpleConnectionMaker.makeNewConnection();
 
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
         ps.setString(1,id);
@@ -46,18 +51,6 @@ public abstract class AbstractUserDAO {
     public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 
     //CONNECTION 구현
-    public class NAbstractUserDAO extends AbstractUserDAO{
-        @Override
-        public Connection getConnection() throws ClassNotFoundException, SQLException {
-            Map<String, String> env = System.getenv();
-            String dbHost = env.get("DB_HOST");
-            String dbUser = env.get("DB_USER");
-            String dbPassword = env.get("DB_PASSWORD");
-
-            Connection conn = DriverManager.getConnection(dbHost,dbUser,dbPassword);
-            return conn;
-        }
-    }
 }
 
 
