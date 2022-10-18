@@ -1,10 +1,7 @@
 package com.line.dao;
-
-import com.line.database.SQLtest;
 import com.line.domain.Hospital;
 
 import java.sql.*;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 

@@ -1,5 +1,7 @@
 package com.line.dao;
 
+import com.line.domain.User;
+
 import java.sql.*;
 import java.util.Map;
 
@@ -16,38 +18,36 @@ public class UserDAO2 {
     }
 
 
-    public void add(String id, String name, String password) throws SQLException {
+    public void add(User user) throws SQLException {
         Connection conn = getConnection();
         PreparedStatement ps = conn.prepareStatement("INSERT INTO users(id, name, password) VALUES (?,?,?)");
-        ps.setString(1,id);
-        ps.setString(2,name);
-        ps.setString(3,password);
+        ps.setString(1,user.getId());
+        ps.setString(2,user.getName());
+        ps.setString(3,user.getPassword());
 
         ps.executeUpdate();
         ps.close();
         conn.close();
     }
 
-    public void findOne(int id) throws SQLException {
+    public User findOne(String id) throws SQLException {
         Connection conn = getConnection();
         PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE id = ?");
-        ps.setInt(1,id);
+        ps.setString(1,id);
 
         ResultSet rs = ps.executeQuery();
-        while(rs.next()){
-            System.out.println("id: "+rs.getString(1));
-            System.out.println("name: "+rs.getString(2));
-            System.out.println("password: "+rs.getString(3));
-        }
+
+        rs.next();
+        User user = new User();
+        user.setId(rs.getString("id"));
+        user.setName(rs.getString("name"));
+        user.setPassword(rs.getString("password"));
 
         ps.close();
         conn.close();
         rs.close();
+
+        return user;
     }
 
-    public static void main(String[] args) throws SQLException {
-        UserDAO sql = new UserDAO();
-        sql.add("3","sky","123456768");
-        sql.findOne(2);
-    }
 }
