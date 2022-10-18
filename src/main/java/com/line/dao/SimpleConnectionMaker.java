@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Map;
 
+//Connection Class
 public class SimpleConnectionMaker {
     public Connection makeNewConnection() throws ClassNotFoundException, SQLException{
         Map<String, String> env = System.getenv();
