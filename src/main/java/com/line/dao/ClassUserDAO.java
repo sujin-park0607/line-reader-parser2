@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public abstract class ClassUserDAO {
+public class ClassUserDAO {
     private SimpleConnectionMaker simpleConnectionMaker;
 
     public ClassUserDAO() {
@@ -49,6 +49,4 @@ public abstract class ClassUserDAO {
         return user;
     }
 
-    //CONNECTION 추상화
-    public abstract Connection getConnection() throws ClassNotFoundException, SQLException;
 }

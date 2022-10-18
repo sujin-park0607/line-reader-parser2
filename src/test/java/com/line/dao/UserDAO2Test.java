@@ -12,15 +12,18 @@ class UserDAO2Test {
 
     @Test
     void addAndSelect(){
-        UserDAO2 userDao = new UserDAO2();
-        User user = new User("11","SSJJIINN","06070607");
+        ClassUserDAO userDao = new ClassUserDAO();
+        User user = new User("13","SSJJIINN","06070607");
         try {
             userDao.add(user);
 
-            User selectedUser = userDao.findOne("11");
+            User selectedUser = userDao.get("13");
             System.out.println(selectedUser.getName());
             Assertions.assertEquals("SSJJIINN", selectedUser.getName());
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
     }
