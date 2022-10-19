@@ -1,4 +1,4 @@
-package com.line.classdao;
+package com.line.dao.classdao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,4 +16,5 @@ public class SimpleConnectionMaker {
         Connection conn = DriverManager.getConnection(dbHost, dbUser, dbPassword);
         return conn;
     }
+
 }

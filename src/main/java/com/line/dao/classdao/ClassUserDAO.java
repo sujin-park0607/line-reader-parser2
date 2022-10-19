@@ -1,6 +1,5 @@
-package com.line.classdao;
+package com.line.dao.classdao;
 
-import com.line.classdao.SimpleConnectionMaker;
 import com.line.domain.User;
 
 import java.sql.Connection;
@@ -27,7 +26,6 @@ public class ClassUserDAO {
         ps.close();
         conn.close();
     }
-
     //SELECT
     public User get(String id) throws SQLException, ClassNotFoundException {
         Connection conn = simpleConnectionMaker.makeNewConnection();
