@@ -1,4 +1,4 @@
-package com.line.interfacedao;
+package com.line.dao.interfacedao;
 
 import com.line.domain.User;
 

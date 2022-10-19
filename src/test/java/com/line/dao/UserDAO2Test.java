@@ -1,8 +1,8 @@
 package com.line.dao;
 
 import com.line.domain.User;
-import com.line.interfacedao.DaoFactory;
-import com.line.interfacedao.InterfaceUserDao;
+import com.line.dao.interfacedao.DaoFactory;
+import com.line.dao.interfacedao.InterfaceUserDao;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 

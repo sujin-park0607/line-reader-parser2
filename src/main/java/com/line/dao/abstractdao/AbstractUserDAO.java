@@ -1,4 +1,4 @@
-package com.line.abstractdao;
+package com.line.dao.abstractdao;
 
 import com.line.domain.User;
 

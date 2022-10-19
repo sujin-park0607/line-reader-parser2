@@ -1,4 +1,4 @@
-package com.line.interfacedao;
+package com.line.dao.interfacedao;
 
 import java.sql.Connection;
 import java.sql.SQLException;
